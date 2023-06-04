@@ -1,10 +1,9 @@
 package pl.camp.it.spring.boot.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import pl.camp.it.spring.boot.model.Data;
 
 @Controller
 public class SimpleController {
@@ -49,6 +48,37 @@ public class SimpleController {
         System.out.println(surname);
         System.out.println(age);
 
+        return "strona2";
+    }
+
+    @RequestMapping(path = "/form", method = RequestMethod.GET)
+    public String form() {
+        return "form";
+    }
+
+    @RequestMapping(path = "/form", method = RequestMethod.POST)
+    public String formReceive(@RequestParam String login,
+                              @RequestParam String pass) {
+        System.out.println(login);
+        System.out.println(pass);
+        return "strona2";
+    }
+
+    @RequestMapping(path = "/form2", method = RequestMethod.GET)
+    public String form2(Model model) {
+        model.addAttribute("dataObject", new Data());
+        return "form/form2";
+    }
+
+    @RequestMapping(path = "/form2", method = RequestMethod.POST)
+    public String form2(@ModelAttribute Data data) {
+        System.out.println(data.getLogin());
+        System.out.println(data.getName());
+        System.out.println(data.getSurname());
+        System.out.println(data.getAge());
+        System.out.println(data.getCity());
+        System.out.println(data.getStreet());
+        System.out.println(data.getPass());
         return "strona2";
     }
 }

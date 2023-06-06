@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:text="${name}"></div>
+<div th:each="imie : ${names}" th:text="${imie}"></div>
+<div th:text="'Ilosc imion na liscie' + ${names.size()}"></div>
+<div th:if="${randomName.equals('Karol')}">Wylosowal sie Karol</div>
+</body>
+</html>

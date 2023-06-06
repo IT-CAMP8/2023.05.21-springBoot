@@ -5,6 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.camp.it.spring.boot.model.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 @Controller
 public class SimpleController {
 
@@ -80,5 +84,21 @@ public class SimpleController {
         System.out.println(data.getStreet());
         System.out.println(data.getPass());
         return "strona2";
+    }
+
+    @RequestMapping(path = "/name", method = RequestMethod.GET)
+    public String name(Model model) {
+        String imie = "Janusz";
+        model.addAttribute("name", imie);
+        List<String> names = new ArrayList<>();
+        names.add("Karol");
+        names.add("Janusz");
+        names.add("Zbyszek");
+        names.add("Wiesiek");
+        names.add("Mateusz");
+        names.add("Bogdan");
+        model.addAttribute("names", names);
+        model.addAttribute("randomName", names.get(new Random().nextInt(6)));
+        return "name";
     }
 }
